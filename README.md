@@ -1,5 +1,7 @@
 # Redis EPH Checkpoints
 
+[ ![Download](https://api.bintray.com/packages/davesters/java/redis-eph-checkpoints/images/download.svg) ](https://bintray.com/davesters/java/redis-eph-checkpoints/_latestVersion)
+
 Use a Redis database for checkpoints with using the Azure Event Processor Host (EPH) for Azure Event Hubs.
 
 ## Add to your project
