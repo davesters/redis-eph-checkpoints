@@ -22,10 +22,20 @@ public class RedisCheckpointLeaseManager implements ICheckpointManager, ILeaseMa
     private final RedisCheckpointOptions options;
     private final CheckpointStore store;
 
+    /**
+     * Construct a new RedisCheckpointLeaseManager with the processor and redis hostnames.
+     * All other options will be set to their default values.
+     * @param processorHostName The name of the Event Processor Host name
+     * @param redisHostname The hostname of the redis database
+     */
     public RedisCheckpointLeaseManager(String processorHostName, String redisHostname) {
         this(new RedisCheckpointOptions(processorHostName, redisHostname));
     }
 
+    /**
+     * Construct a new RedisCheckpointLeaseManager an options object.
+     * @param options The options object
+     */
     public RedisCheckpointLeaseManager(RedisCheckpointOptions options) {
         this(options, new RedisCheckpointStore(options));
     }
