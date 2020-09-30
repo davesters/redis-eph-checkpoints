@@ -34,7 +34,7 @@ Add the depedency to your `pom.xml` file.
 ```java
 String processorHostName = EventProcessorHost.createHostName("hostname");
 RedisCheckpointOptions options = new RedisCheckpointOptions(processorHostName, "redis.host.name");
-options.setPassword("password")
+options.setPassword("password");
 options.setSsl(true);
 
 RedisCheckpointLeaseManager checkpointLeaseManager = new RedisCheckpointLeaseManager(options);

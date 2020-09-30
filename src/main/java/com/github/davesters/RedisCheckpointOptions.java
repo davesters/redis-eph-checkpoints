@@ -17,7 +17,7 @@ public class RedisCheckpointOptions {
     private boolean batchCheckpointWrites;
     private long batchIntervalInMillis = 2000;
 
-    RedisCheckpointOptions(String processorHostname, String redisHostname) {
+    public RedisCheckpointOptions(String processorHostname, String redisHostname) {
         this.processorHostname = processorHostname;
         this.redisHostname = redisHostname;
     }
