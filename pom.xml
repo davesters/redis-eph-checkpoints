@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.davesters</groupId>
   <artifactId>redis-eph-checkpoints</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -16,14 +16,16 @@
   </properties>
   <dependencies>
     <dependency>
-      <groupId>com.microsoft.azure</groupId>
-      <artifactId>azure-eventhubs-eph</artifactId>
-      <version>3.2.0</version>
-    </dependency>
-    <dependency>
       <groupId>redis.clients</groupId>
       <artifactId>jedis</artifactId>
       <version>3.2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.microsoft.azure</groupId>
+      <artifactId>azure-eventhubs-eph</artifactId>
+      <version>3.2.0</version>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -148,4 +150,12 @@
       </snapshots>
     </pluginRepository>
   </pluginRepositories>
+
+  <distributionManagement>
+    <repository>
+      <id>bintray-davesters-java</id>
+      <name>davesters-java</name>
+      <url>https://api.bintray.com/maven/davesters/java/redis-eph-checkpoints/;publish=1</url>
+    </repository>
+  </distributionManagement>
 </project>
