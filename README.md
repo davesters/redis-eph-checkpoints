@@ -25,7 +25,7 @@ Add the depedency to your `pom.xml` file.
 <dependency>
     <groupId>com.github.davesters</groupId>
     <artifactId>redis-eph-checkpoints</artifactId>
-    <version>1.0.0</version>
+    <version>[LATEST VERSION]</version>
 </dependency>
 ```
 
