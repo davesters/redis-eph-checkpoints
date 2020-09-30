@@ -32,8 +32,12 @@ Add the depedency to your `pom.xml` file.
 ## Example Usage
 
 ```java
+MetadataEventProcessorFactory eventProcessorFactory = context.createBean(YourProcessorFactoryClass.class);
+
 String processorHostName = EventProcessorHost.createHostName("hostname");
 RedisCheckpointOptions options = new RedisCheckpointOptions(processorHostName, "redis.host.name");
+options.setCheckpointKeyName(processorHostName); // Required option
+options.setLeaseDurationInMillis(45 * 1000); // Set to 45 seconds if you want. Defaults to 30 seconds.
 options.setPassword("password");
 options.setSsl(true);
 
@@ -44,4 +48,13 @@ eventProcessorHost = EventProcessorHost.EventProcessorHostBuilder
   .useUserCheckpointAndLeaseManagers(checkpointLeaseManager, checkpointLeaseManager)
   .useEventHubConnectionString("connection-string")
   .build();
+
+PartitionManagerOptions partitionManagerOptions = new PartitionManagerOptions();
+partitionManagerOptions.setLeaseDurationInSeconds(45); // Maybe want to set this to match the lease duration set above
+partitionManagerOptions.setLeaseRenewIntervalInSeconds(30); // Probably want to set this to a number below the lease duration
+eventProcessorHost.setPartitionManagerOptions(partitionManagerOptions);
+
+eventProcessorHost.registerEventProcessorFactory(eventProcessorFactory, options).get();
 ```
+
+Be sure to look at the `RedisCheckpointOptions` class for other available options and their descriptions.
