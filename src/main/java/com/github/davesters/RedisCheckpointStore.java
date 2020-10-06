@@ -102,6 +102,7 @@ class RedisCheckpointStore implements CheckpointStore {
         }
     }
 
+    @SuppressWarnings("checkstyle:IllegalCatch")
     private void writeCheckpoints() {
         if (pool == null || pool.isClosed() || checkpoints.size() == 0) {
             return;
@@ -119,6 +120,8 @@ class RedisCheckpointStore implements CheckpointStore {
             if (pool != null && !pool.isClosed()) {
                 pipeline.sync();
             }
+        } catch (Exception e) {
+            LOG.error("Error writing checkpoints to Redis", e);
         }
     }
 
