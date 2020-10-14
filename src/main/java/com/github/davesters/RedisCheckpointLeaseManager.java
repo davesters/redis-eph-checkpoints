@@ -82,7 +82,7 @@ public class RedisCheckpointLeaseManager implements ICheckpointManager, ILeaseMa
             }
 
             LOG.debug("creating checkpoint for partition {}", id);
-            this.store.setCheckpoint(new Checkpoint(id, "@latest", 0));
+            this.store.setCheckpoint(new Checkpoint(id, options.getInitialCheckpointOffset(), 0));
         });
 
         return CompletableFuture.completedFuture(null);

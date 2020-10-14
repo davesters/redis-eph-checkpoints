@@ -84,6 +84,8 @@ class RedisCheckpointLeaseManagerTest {
 
     @Test
     void createAllCheckpointsIfNotExists_createsCheckpointsForMissingPartitions() {
+        RedisCheckpointOptions options = new RedisCheckpointOptions("", "");
+
         Map<String, Checkpoint> allCheckpoints = new HashMap<>();
         allCheckpoints.put("p1", new Checkpoint("p1"));
         allCheckpoints.put("p5", new Checkpoint("p5"));
@@ -91,7 +93,7 @@ class RedisCheckpointLeaseManagerTest {
         CheckpointStore store = mock(CheckpointStore.class);
         when(store.getAllCheckpoints()).thenReturn(allCheckpoints);
 
-        RedisCheckpointLeaseManager manager = new RedisCheckpointLeaseManager(null, store);
+        RedisCheckpointLeaseManager manager = new RedisCheckpointLeaseManager(options, store);
         CompletableFuture<Void> response = manager
             .createAllCheckpointsIfNotExists(Arrays.asList("p1", "p2", "p3", "p4", "p5"));
 

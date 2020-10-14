@@ -13,6 +13,7 @@ public class RedisCheckpointOptions {
     private boolean ssl;
     private int connectTimeout = 10000;
     private int leaseDurationInMillis = 30000;
+    private String initialCheckpointOffset = InitialCheckpointOffset.END_OF_STREAM;
     private String checkpointKeyName;
     private boolean batchCheckpointWrites;
     private long batchIntervalInMillis = 2000;
@@ -155,6 +156,24 @@ public class RedisCheckpointOptions {
      */
     public void setLeaseDurationInMillis(int leaseDurationInMillis) {
         this.leaseDurationInMillis = leaseDurationInMillis;
+    }
+
+    /**
+     * Specify where to start in the Event Hub when no checkpoint exists yet.
+     * Defaults to InitialCheckpointOffset.END_OF_STREAM
+     * @return InitialCheckpointOffset constant value
+     */
+    public String getInitialCheckpointOffset() {
+        return initialCheckpointOffset;
+    }
+
+    /**
+     * Specify where to start in the Event Hub when no checkpoint exists yet.
+     * Defaults to InitialCheckpointOffset.END_OF_STREAM
+     * @param offset InitialCheckpointOffset value
+     */
+    public void setInitialCheckpointOffset(String offset) {
+        this.initialCheckpointOffset = offset;
     }
 
     /**
